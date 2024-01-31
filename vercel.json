@@ -1,0 +1,27 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "react-app/**",
+            "use": "@vercel/static-build"
+        },
+        {
+            "src": "proxy-server/**",
+            "use": "vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/proxy-server/(.*)",
+            "dest": "/proxy-server/$1",
+            "status": 200
+        },
+        {
+            "handle": "filesystem"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
+        }
+    ]
+}
